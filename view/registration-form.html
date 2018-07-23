@@ -1,0 +1,88 @@
+<section>
+		<h1>Register With US</h1>
+		<div class="crr__main_grids">
+			<form name="form" id="SignupForm" action="#/welcome" class="agile_form" method="post" ng-app>
+				<fieldset>
+					<h3>Account information</h3>
+					<div class="form-group form_ui crr_its_margin" ng-class="{true: 'error'}[submitted && form.name.$invalid]">
+						<div class="input_ui">
+							<i class="fa fa-user" aria-hidden="true"></i>
+							<input id="Name" type="text" name="name" class="form-control" placeholder="Name" ng-model="name" required />
+							<span class="err" ng-show="submitted && form.name.$error.required">Required</span>
+						</div>
+					</div>
+					<div class="form-group form_ui" ng-class="{true: 'error'}[submitted && form.email.$invalid]">
+						<div class="input_ui">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<input id="Email" type="email" name="email" class="form-control" placeholder="Email" ng-model="email" required />
+							<span class="err" ng-show="submitted && form.email.$error.required">Required</span>
+           					 <span class="err" ng-show="submitted && form.email.$error.email">Invalid email</span>
+						</div>
+					</div>
+					<div class="form-group form_ui crr_its_margin">
+						<div class="input_ui">
+							<i class="fa fa-file-text" aria-hidden="true"></i>
+							<input id="Subject" type="text" name="Subject" class="form-control" placeholder="Subject"  />
+						</div>
+					</div>
+					<div class="form-group form_ui" ng-class="{true: 'error'}[submitted && form.password.$invalid]">
+						<div class="input_ui">
+							<i class="fa fa-key" aria-hidden="true"></i>
+							<input id="Password" type="password" name="password" class="form-control" ng-model="password" placeholder="Password" required	 />
+							<span class="err" ng-show="submitted && form.password.$error.required">Required</span>
+						</div>
+					</div>
+					<div class="clear"> </div>
+				</fieldset>
+	
+				<p>
+					<button type="submit" id="SaveAccount" class="btn btn-primary agileinfo_primary submit" ng-click="submitted=true;save()">Submit form</button>
+				</p>
+				<span class="sgn">Already Registered (<a>Sign in</a>)</span>
+			</form>
+			<form id="signin" name="sign" action="#/welcome" class="agile_form" method="post" ng-app style="display:none">
+				<fieldset>
+					<h3>Login</h3>
+					<div class="form-group form_ui_login" ng-class="{true: 'error'}[submitted && sign.logemail.$invalid]">
+						<div class="input_ui">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<input id="logEmail" type="email" name="email" class="form-control" placeholder="Email" ng-model="logemail" required />
+							<span class="err" ng-show="submitted && sign.logemail.$error.required">Required</span>
+						</div>
+					</div>
+					<div class="form-group form_ui_login" ng-class="{true: 'error'}[submitted && sign.logpassword.$invalid]">
+						<div class="input_ui">
+							<i class="fa fa-key" aria-hidden="true"></i>
+							<input id="logPassword" type="password" name="password" class="form-control" ng-model="logpassword" placeholder="Password" required	 />
+							<span class="err" ng-show="submitted && sign.logpassword.$error.required">Required</span>
+						</div>
+					</div>
+				</fieldset>
+				<p>
+					<button type="submit" id="login" class="btn btn-primary agileinfo_primary submit" ng-click="submitted=true;save()">Login</button>
+				</p>
+				<span class="sgnup">Not Registered(<a>Sign up</a>)</span>
+			</form>
+			
+		</div>
+		<script type="text/javascript">
+		$('.sgn a').click(function(){
+	$('#SignupForm').hide();
+	$('#signin').show();
+	$.ajax({
+    success: function (data, status) {
+        document.getElementById('signin').reset();
+    }
+});
+
+});
+		$('.sgnup a').click(function(){
+	$('#SignupForm').show();
+	$('#signin').hide();
+
+});
+$(document).ready(function(){
+$('#SignupForm')[0].reset();
+});
+		</script>
+	</section>
